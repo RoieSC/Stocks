@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController, UITableViewDataSource {
     
     
-    @IBOutlet weak var stocksTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     var mainStocksData = [MainStockData]()
 
     override func viewDidLoad() {

@@ -108,7 +108,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Stocks" id="BQs-oT-1s1"/>
                     <connections>
-                        <outlet property="stocksTableView" destination="kNR-lw-y3v" id="Q7i-00-yE5"/>
+                        <outlet property="tableView" destination="kNR-lw-y3v" id="Q7i-00-yE5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OSW-dS-IaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
