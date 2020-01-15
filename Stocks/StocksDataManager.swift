@@ -51,7 +51,6 @@ class StocksDataManager {
             
         do {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                // try to read out a string array
                 if let stocks = json["stocks"] as? [[String:Any]] {
                     for stock in stocks {
                         var stockData = MainStockData()
