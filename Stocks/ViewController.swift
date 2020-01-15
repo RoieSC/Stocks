@@ -9,10 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var mainStocksData: [MainStockData]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        mainStocksData = StocksDataManager.sharedInstance.mainStocks
+        if let stocks = mainStocksData {
+            for stock in stocks {
+                print(stock)
+            }
+        }
+        
     }
 
 

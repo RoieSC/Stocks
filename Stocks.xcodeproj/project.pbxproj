@@ -13,6 +13,7 @@
 		229FC7D023CF7C33005685E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229FC7CE23CF7C33005685E6 /* Main.storyboard */; };
 		229FC7D223CF7C38005685E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 229FC7D123CF7C38005685E6 /* Assets.xcassets */; };
 		229FC7D523CF7C38005685E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 229FC7D323CF7C38005685E6 /* LaunchScreen.storyboard */; };
+		229FC7E023CF872B005685E6 /* StocksDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FC7DF23CF872B005685E6 /* StocksDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		229FC7D123CF7C38005685E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		229FC7D423CF7C38005685E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		229FC7D623CF7C38005685E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		229FC7DF23CF872B005685E6 /* StocksDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				229FC7D123CF7C38005685E6 /* Assets.xcassets */,
 				229FC7D323CF7C38005685E6 /* LaunchScreen.storyboard */,
 				229FC7D623CF7C38005685E6 /* Info.plist */,
+				229FC7DF23CF872B005685E6 /* StocksDataManager.swift */,
 			);
 			path = Stocks;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			files = (
 				229FC7CD23CF7C33005685E6 /* ViewController.swift in Sources */,
 				229FC7C923CF7C33005685E6 /* AppDelegate.swift in Sources */,
+				229FC7E023CF872B005685E6 /* StocksDataManager.swift in Sources */,
 				229FC7CB23CF7C33005685E6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
