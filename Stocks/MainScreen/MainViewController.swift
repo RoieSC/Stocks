@@ -30,7 +30,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.nameLabel.text = stockData.name
         cell.stkLabel.text = stockData.stk
         cell.priorityLabel.text = "\(stockData.priority ?? 0)"
-        cell.setImage(urlStr: stockData.imgUrlStr)
+        if !stockData.didLoadImage {
+            cell.setImage(urlStr: stockData.imgUrlStr, completion: { (finish, error) in
+                stockData.didLoadImage = finish
+            })
+        }
         return cell
     }
     

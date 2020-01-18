@@ -29,11 +29,12 @@ struct MainStockKeys {
     static let priority = "priority"
 }
 
-struct MainStockData {
+class MainStockData {
     var name: String?
     var stk: String?
     var imgUrlStr: String?
     var priority: Int?
+    var didLoadImage = false
 }
 
 class StocksDataManager {
@@ -53,7 +54,7 @@ class StocksDataManager {
             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 if let stocks = json["stocks"] as? [[String:Any]] {
                     for stock in stocks {
-                        var stockData = MainStockData()
+                        let stockData = MainStockData()
                         if let name = stock[MainStockKeys.name] as? String {
                             stockData.name = name
                         }
