@@ -35,6 +35,7 @@ class StockNetworkManager {
                 for dict in value {
                     if dict.value is [String:[String:Any]] {
                         completion(true, nil, dict.value as? [String:[String:Any]])
+                        break
                     }
                 }
             }

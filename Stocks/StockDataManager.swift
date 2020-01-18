@@ -17,7 +17,7 @@ struct StockDataKeys {
 }
 
 struct StockData {
-    var time: Date
+    var timeStr: String
     var open: Double
     var high: Double
     var low: Double
@@ -32,9 +32,8 @@ class StockDataManager {
             if success && response != nil {
                 var stocksData = [StockData]()
                 for (timeStr, data) in (response!) {
-                    print("time: \(timeStr), data: \(data)")
                     if let stockData = getStockData(timeStr: timeStr, data: data) {
-                        print("stockData: \(stockData)")
+//                        print("stockData: \(stockData)")
                         stocksData.append(stockData)
                     }
                 }
@@ -55,7 +54,7 @@ class StockDataManager {
             let low = data[StockDataKeys.low] as? NSString,
             let close = data[StockDataKeys.close] as? NSString,
             let volume = data[StockDataKeys.volume] as? NSString {
-            return StockData(time: date, open: open.doubleValue, high: high.doubleValue, low: low.doubleValue, close: close.doubleValue, volume: volume.doubleValue)
+            return StockData(timeStr: getTimeString(fromDate: date), open: open.doubleValue, high: high.doubleValue, low: low.doubleValue, close: close.doubleValue, volume: volume.doubleValue)
         }
         return nil
     }
@@ -67,5 +66,11 @@ class StockDataManager {
             return date
         }
         return nil
+    }
+    
+     class func getTimeString(fromDate date:Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        return dateFormatter.string(from: date)
     }
 }
