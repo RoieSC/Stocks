@@ -37,12 +37,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stockData = mainStocksData[indexPath.row]
         StockDataManager.getStockData(symbol: stockData.stk!, interval: .one) { (success, error, stocksData) in
-            if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
-                stockDataVC.stockName = stockData.name
-                stockDataVC.stocksData = stocksData
-                self.navigationController?.show(stockDataVC, sender: nil)
+            if success && stocksData != nil {
+                if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
+                    stockDataVC.stockName = stockData.name
+                    stockDataVC.stocksData = stocksData
+                    self.navigationController?.show(stockDataVC, sender: nil)
+                }
             }
-            print("stocksData = \(String(describing: stocksData))")
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
 }

@@ -30,11 +30,11 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
         if let stocksData = stocksData {
             let stockData = stocksData[indexPath.row]
             cell.timeLabel.text = stockData.timeStr
-            cell.openLabel.text = "\(stockData.open)"
-            cell.highLabel.text = "\(stockData.high)"
-            cell.lowLabel.text = "\(stockData.low)"
-            cell.closeLabel.text = "\(stockData.close)"
-            cell.volumeLabel.text = "\(stockData.volume)"
+            cell.openLabel.text = "Open: \(stockData.open)"
+            cell.highLabel.text = "High: \(stockData.high)"
+            cell.lowLabel.text = "Low: \(stockData.low)"
+            cell.closeLabel.text = "Close: \(stockData.close)"
+            cell.volumeLabel.text = "Volume: \(stockData.volume)"
         }
         return cell
     }
