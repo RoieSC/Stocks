@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainStockCell: UITableViewCell {
-    
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var stkLabel: UILabel!
@@ -26,6 +26,19 @@ class MainStockCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setImage(urlStr: String?) {
+        if let imgURL = URL(string: urlStr ?? "") {
+            if !didLoadImage {
+                let thumbnailSize = CGSize(width: 100, height: 100)
+                stockImgView?.sd_setImage(with: imgURL, placeholderImage: nil, context: [SDWebImageContextOption.imageThumbnailPixelSize: thumbnailSize], progress: nil, completed: { (image, error, cacheType, url) in
+                    if error == nil && image != nil {
+                        self.didLoadImage = true
+                    }
+                })
+            }
+        }
     }
 
 }
