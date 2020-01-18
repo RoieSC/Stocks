@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
@@ -32,5 +32,12 @@ class MainViewController: UIViewController, UITableViewDataSource {
         cell.priorityLabel.text = "\(stocksData.priority ?? 0)"
         cell.setImage(urlStr: stocksData.imgUrlStr)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let stocksData = mainStocksData[indexPath.row]
+        StockNetworkManager.requestStockData(symbol: stocksData.stk!, interval: .one) { (success, error) in
+            print("success = \(success ? "YES" : "NO")")
+        }
     }
 }

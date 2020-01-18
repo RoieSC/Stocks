@@ -94,6 +94,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="RX7-IZ-YeD" id="qoo-so-o3H"/>
+                                    <outlet property="delegate" destination="RX7-IZ-YeD" id="LB3-zv-P1b"/>
                                 </connections>
                             </tableView>
                         </subviews>
