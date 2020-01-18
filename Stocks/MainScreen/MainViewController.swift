@@ -39,6 +39,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         StockDataManager.getStockData(symbol: stockData.stk!, interval: .one) { (success, error, stocksData) in
             if success && stocksData != nil {
                 if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
+                    stockDataVC.stockSymbol = stockData.stk
                     stockDataVC.stockName = stockData.name
                     stockDataVC.stocksData = stocksData
                     self.navigationController?.show(stockDataVC, sender: nil)

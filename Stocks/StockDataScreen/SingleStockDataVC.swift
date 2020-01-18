@@ -8,17 +8,21 @@
 
 import UIKit
 
-class SingleStockDataVC: UIViewController, UITableViewDataSource {
+class SingleStockDataVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     var stockName: String?
+    var stockSymbol: String?
     var stocksData: [StockData]?
+    var stockDataInterval: StockDataInterval = .one
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = stockName
+        stocksData?.sort(by: {$0.date > $1.date})
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,4 +42,18 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
         }
         return cell
     }
+    
+    
+    //MARK: Actions
+    @IBAction func segmentedControlChanged(_ sender: Any) {
+        stockDataInterval = stockDataInterval.getInterval(withIndex: segmentedControl.selectedSegmentIndex)
+        StockDataManager.getStockData(symbol: stockSymbol!, interval: stockDataInterval) { (success, error, stocksData) in
+            if success && stocksData != nil {
+                self.stocksData = stocksData
+                self.stocksData?.sort(by: {$0.date > $1.date})
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }

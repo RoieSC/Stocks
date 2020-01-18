@@ -15,8 +15,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8s6-sj-hF4">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hZD-Go-jaW">
+                                <rect key="frame" x="20" y="96" width="374" height="35"/>
+                                <segments>
+                                    <segment title="1 min"/>
+                                    <segment title="5 min"/>
+                                    <segment title="15 min"/>
+                                    <segment title="30 min"/>
+                                    <segment title="60 min"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="niF-e9-FHV" eventType="valueChanged" id="kOK-6C-zt6"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8s6-sj-hF4">
+                                <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StockDataCellID" rowHeight="173" id="WAN-fW-NPa" customClass="StockDataCell" customModule="Stocks" customModuleProvider="target">
@@ -103,17 +116,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="8s6-sj-hF4" firstAttribute="trailing" secondItem="Fyp-jE-3eY" secondAttribute="trailing" id="IfI-Ot-EWj"/>
+                            <constraint firstItem="hZD-Go-jaW" firstAttribute="top" secondItem="Fyp-jE-3eY" secondAttribute="top" constant="8" id="UIv-UZ-p9f"/>
+                            <constraint firstItem="hZD-Go-jaW" firstAttribute="leading" secondItem="Fyp-jE-3eY" secondAttribute="leading" constant="20" id="aZM-TF-HF1"/>
                             <constraint firstItem="8s6-sj-hF4" firstAttribute="leading" secondItem="Fyp-jE-3eY" secondAttribute="leading" id="hdw-IZ-sF7"/>
+                            <constraint firstItem="8s6-sj-hF4" firstAttribute="top" secondItem="hZD-Go-jaW" secondAttribute="bottom" constant="8" id="qN0-uc-DZu"/>
                             <constraint firstItem="8s6-sj-hF4" firstAttribute="bottom" secondItem="Fyp-jE-3eY" secondAttribute="bottom" id="tMY-EN-tMm"/>
-                            <constraint firstItem="8s6-sj-hF4" firstAttribute="top" secondItem="Fyp-jE-3eY" secondAttribute="top" id="uBK-ie-Ksj"/>
+                            <constraint firstItem="8s6-sj-hF4" firstAttribute="top" secondItem="Fyp-jE-3eY" secondAttribute="top" constant="50" id="uBK-ie-Ksj"/>
+                            <constraint firstItem="Fyp-jE-3eY" firstAttribute="trailing" secondItem="hZD-Go-jaW" secondAttribute="trailing" constant="20" id="uaA-iq-R4c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fyp-jE-3eY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="mRV-ck-9tk">
-                        <barButtonItem key="rightBarButtonItem" title="Interval" id="ef7-qx-Xxj"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="mRV-ck-9tk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="hZD-Go-jaW" id="uSX-n6-dba"/>
                         <outlet property="tableView" destination="8s6-sj-hF4" id="1QF-eT-cYH"/>
                     </connections>
                 </viewController>

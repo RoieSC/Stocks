@@ -11,6 +11,21 @@ import Alamofire
 
 enum StockDataInterval: Int {
     case one = 1, five = 5, fifteen = 15, thirty = 30, sixty = 60
+    
+    func getInterval(withIndex index: Int) -> StockDataInterval {
+        switch index {
+        case 1:
+            return .five
+        case 2:
+            return .fifteen
+        case 3:
+            return .thirty
+        case 4:
+            return .sixty
+        default:
+            return .one
+        }
+    }
 }
 
 class StockNetworkManager {
