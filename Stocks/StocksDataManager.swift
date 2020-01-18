@@ -32,7 +32,7 @@ struct MainStockKeys {
 struct MainStockData {
     var name: String?
     var stk: String?
-    var imgURL: String?
+    var imgUrlStr: String?
     var priority: Int?
 }
 
@@ -61,7 +61,7 @@ class StocksDataManager {
                             stockData.stk = stk
                         }
                         if let imgURL = stock[MainStockKeys.imgURL] as? String {
-                            stockData.imgURL = imgURL
+                            stockData.imgUrlStr = imgURL
                         }
                         if let priority = stock[MainStockKeys.priority] as? NSString {
                             stockData.priority = priority.integerValue

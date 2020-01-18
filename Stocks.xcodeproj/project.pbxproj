@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2235F97D23D345B900BABD64 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2235F97C23D345B900BABD64 /* SDWebImage */; };
 		229FC7C923CF7C33005685E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FC7C823CF7C33005685E6 /* AppDelegate.swift */; };
 		229FC7CB23CF7C33005685E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FC7CA23CF7C33005685E6 /* SceneDelegate.swift */; };
 		229FC7CD23CF7C33005685E6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229FC7CC23CF7C33005685E6 /* MainViewController.swift */; };
@@ -35,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2235F97D23D345B900BABD64 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +99,9 @@
 			dependencies = (
 			);
 			name = Stocks;
+			packageProductDependencies = (
+				2235F97C23D345B900BABD64 /* SDWebImage */,
+			);
 			productName = Stocks;
 			productReference = 229FC7C523CF7C33005685E6 /* Stocks.app */;
 			productType = "com.apple.product-type.application";
@@ -125,6 +130,9 @@
 				Base,
 			);
 			mainGroup = 229FC7BC23CF7C33005685E6;
+			packageReferences = (
+				2235F97B23D345B900BABD64 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 229FC7C623CF7C33005685E6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -303,6 +311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98677G52X4;
 				INFOPLIST_FILE = Stocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -321,6 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 98677G52X4;
 				INFOPLIST_FILE = Stocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,6 +364,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2235F97B23D345B900BABD64 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2235F97C23D345B900BABD64 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2235F97B23D345B900BABD64 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 229FC7BD23CF7C33005685E6 /* Project object */;
 }

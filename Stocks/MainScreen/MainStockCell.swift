@@ -15,6 +15,7 @@ class MainStockCell: UITableViewCell {
     @IBOutlet weak var stkLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var stockImgView: UIImageView!
+    var didLoadImage = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
