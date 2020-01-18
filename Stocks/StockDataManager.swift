@@ -33,11 +33,10 @@ class StockDataManager {
                 var stocksData = [StockData]()
                 for (timeStr, data) in (response!) {
                     if let stockData = getStockData(timeStr: timeStr, data: data) {
-//                        print("stockData: \(stockData)")
                         stocksData.append(stockData)
                     }
                 }
-                
+                completion(true, nil, stocksData)
             }
         }
     }

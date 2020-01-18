@@ -37,7 +37,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stocksData = mainStocksData[indexPath.row]
         StockDataManager.getStockData(symbol: stocksData.stk!, interval: .one) { (success, error, stocksData) in
-            
+            print("stocksData = \(String(describing: stocksData))")
         }
     }
 }
