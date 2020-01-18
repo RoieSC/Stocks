@@ -17,24 +17,30 @@ class StockNetworkManager {
     
     static let apiKey = "Z8EW6CI3PHR9SUTK"
     
-    class func requestStockData(symbol: String, interval:StockDataInterval, completion: @escaping(Bool, Error?) -> ()) {
+    class func requestStockData(symbol: String, interval:StockDataInterval, completion: @escaping(Bool, Error?, [String:[String:Any]]?) -> ()) {
         if let url = requestURL(symbol: symbol, interval: interval) {
             Alamofire.request(url, method: .get, parameters: nil).validate().responseJSON { (response) in
                 guard response.result.isSuccess else {
                     print("Error while fetching remote rooms: \(String(describing: response.result.error))")
-                    completion(false, response.error)
+                    completion(false, response.error, nil)
                   return
                 }
                 
+                guard let value = response.result.value as? [String: Any] else {
+                    print("Malformed data received from fetchAllRooms service")
+                    completion(false, response.error, nil)
+                    return
+                }
                 
-//                guard let value = response.result.value as? [String: Any],
-//                  let rows = value["rows"] as? [[String: Any]] else {
-//                    print("Malformed data received from fetchAllRooms service")
-//                    completion(nil)
-//                    return
-//                }
-                
-                print("\(response)")
+                for dict in value {
+                    if dict.value is [String:[String:Any]] {
+                        completion(true, nil, dict.value as? [String:[String:Any]])
+//                        for (timeStr, data) in (dict.value as! [String:[String:Any]]) {
+//                            print("time: \(timeStr), data: \(data)")
+//                        }
+                        print("DICT VALUE: \(dict.value)")
+                    }
+                }
             }
         }
 

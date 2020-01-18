@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct StockData {
+    var time: Date
+    var open: Double
+    var high: Double
+    var low: Double
+    var close: Double
+    var volume: Double
+}
