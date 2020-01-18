@@ -35,10 +35,6 @@ class StockNetworkManager {
                 for dict in value {
                     if dict.value is [String:[String:Any]] {
                         completion(true, nil, dict.value as? [String:[String:Any]])
-//                        for (timeStr, data) in (dict.value as! [String:[String:Any]]) {
-//                            print("time: \(timeStr), data: \(data)")
-//                        }
-                        print("DICT VALUE: \(dict.value)")
                     }
                 }
             }

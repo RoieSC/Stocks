@@ -36,8 +36,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stocksData = mainStocksData[indexPath.row]
-        StockNetworkManager.requestStockData(symbol: stocksData.stk!, interval: .one) { (success, error) in
-            print("success = \(success ? "YES" : "NO")")
+        StockDataManager.getStockData(symbol: stocksData.stk!, interval: .one) { (success, error, stocksData) in
+            
         }
     }
 }
