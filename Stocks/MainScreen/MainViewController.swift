@@ -26,11 +26,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainStockID", for: indexPath) as! MainStockCell
-        let stocksData = mainStocksData[indexPath.row]
-        cell.nameLabel.text = stocksData.name
-        cell.stkLabel.text = stocksData.stk
-        cell.priorityLabel.text = "\(stocksData.priority ?? 0)"
-        cell.setImage(urlStr: stocksData.imgUrlStr)
+        let stockData = mainStocksData[indexPath.row]
+        cell.nameLabel.text = stockData.name
+        cell.stkLabel.text = stockData.stk
+        cell.priorityLabel.text = "\(stockData.priority ?? 0)"
+        cell.setImage(urlStr: stockData.imgUrlStr)
         return cell
     }
     
@@ -39,6 +39,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         StockDataManager.getStockData(symbol: stockData.stk!, interval: .one) { (success, error, stocksData) in
             if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
                 stockDataVC.stockName = stockData.name
+                stockDataVC.stocksData = stocksData
                 self.navigationController?.show(stockDataVC, sender: nil)
             }
             print("stocksData = \(String(describing: stocksData))")

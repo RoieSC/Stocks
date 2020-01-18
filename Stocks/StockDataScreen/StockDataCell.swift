@@ -9,6 +9,14 @@
 import UIKit
 
 class StockDataCell: UITableViewCell {
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var openLabel: UILabel!
+    @IBOutlet weak var highLabel: UILabel!
+    @IBOutlet weak var lowLabel: UILabel!
+    @IBOutlet weak var closeLabel: UILabel!
+    @IBOutlet weak var volumeLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
