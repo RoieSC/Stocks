@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -40,6 +41,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stockData = mainStocksData[indexPath.row]
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         StockDataManager.getStockData(symbol: stockData.stk!, interval: .one) { (success, error, stocksData) in
             if success && stocksData != nil {
                 if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
@@ -49,6 +51,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.navigationController?.show(stockDataVC, sender: nil)
                 }
             }
+            MBProgressHUD.hide(for: self.view, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }

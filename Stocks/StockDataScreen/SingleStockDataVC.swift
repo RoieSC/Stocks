@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class SingleStockDataVC: UIViewController, UITableViewDataSource {
     
@@ -48,6 +49,7 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
     //MARK: Actions
     @IBAction func segmentedControlChanged(_ sender: Any) {
         let _stockDataInterval = stockDataInterval.getInterval(withIndex: segmentedControl.selectedSegmentIndex)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         StockDataManager.getStockData(symbol: stockSymbol!, interval: _stockDataInterval) { (success, error, stocksData) in
             if success && stocksData != nil {
                 self.stockDataInterval = _stockDataInterval
@@ -59,6 +61,7 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
             else {
                 self.segmentedControl.selectedSegmentIndex = self.segmentedControlIndex
             }
+            MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
     
