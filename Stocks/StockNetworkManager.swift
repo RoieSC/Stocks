@@ -47,11 +47,16 @@ class StockNetworkManager {
                     return
                 }
                 
+                var didComplete = false
                 for dict in value {
                     if dict.value is [String:[String:Any]] {
+                        didComplete = true
                         completion(true, nil, dict.value as? [String:[String:Any]])
                         break
                     }
+                }
+                if !didComplete {
+                    completion(false, response.error, nil)
                 }
             }
         }

@@ -29,6 +29,7 @@ struct StockData {
 class StockDataManager {
     
     class func getStockData(symbol: String, interval:StockDataInterval, completion: @escaping(Bool, Error?, [StockData]?) -> ()) {
+        print("Strting to load symbol: \(symbol)")
         StockNetworkManager.requestStockData(symbol: symbol, interval: interval) { (success, error, response) in
             if success && response != nil {
                 var stocksData = [StockData]()
@@ -37,7 +38,12 @@ class StockDataManager {
                         stocksData.append(stockData)
                     }
                 }
+                print("Success loading symbol: \(symbol)")
                 completion(true, nil, stocksData)
+            }
+            else {
+                print("Error loading symbol\(error != nil ? ": \(error.debugDescription)" : "")")
+                completion(false, error, nil)
             }
         }
     }
