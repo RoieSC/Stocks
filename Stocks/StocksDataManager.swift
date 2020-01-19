@@ -74,5 +74,5 @@ class StocksDataManager {
         } catch let error {
             print("Failed to load: \(error.localizedDescription)")
         }
-    }
+    } 
 }
