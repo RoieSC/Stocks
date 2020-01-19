@@ -49,7 +49,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.navigationController?.show(stockDataVC, sender: nil)
                 }
             }
-            tableView.deselectRow(at: indexPath, animated: false)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

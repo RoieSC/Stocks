@@ -17,6 +17,7 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource, UITableViewDel
     var stockSymbol: String?
     var stocksData: [StockData]?
     var stockDataInterval: StockDataInterval = .one
+    var segmentedControlIndex:Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +47,17 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource, UITableViewDel
     
     //MARK: Actions
     @IBAction func segmentedControlChanged(_ sender: Any) {
-        stockDataInterval = stockDataInterval.getInterval(withIndex: segmentedControl.selectedSegmentIndex)
-        StockDataManager.getStockData(symbol: stockSymbol!, interval: stockDataInterval) { (success, error, stocksData) in
+        let _stockDataInterval = stockDataInterval.getInterval(withIndex: segmentedControl.selectedSegmentIndex)
+        StockDataManager.getStockData(symbol: stockSymbol!, interval: _stockDataInterval) { (success, error, stocksData) in
             if success && stocksData != nil {
+                self.stockDataInterval = _stockDataInterval
+                self.segmentedControlIndex = self.segmentedControl.selectedSegmentIndex
                 self.stocksData = stocksData
                 self.stocksData?.sort(by: {$0.date > $1.date})
                 self.tableView.reloadData()
+            }
+            else {
+                self.segmentedControl.selectedSegmentIndex = self.segmentedControlIndex
             }
         }
     }
