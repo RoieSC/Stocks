@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleStockDataVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SingleStockDataVC: UIViewController, UITableViewDataSource {
     
     
     @IBOutlet weak var tableView: UITableView!
