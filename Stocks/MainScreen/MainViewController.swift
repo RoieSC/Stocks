@@ -31,11 +31,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.nameLabel.text = stockData.name
         cell.stkLabel.text = stockData.stk
         cell.priorityLabel.text = "\(stockData.priority ?? 0)"
-        if !stockData.didLoadImage { //Loading image once
-            cell.setImage(urlStr: stockData.imgUrlStr, completion: { (finish, error) in
-                stockData.didLoadImage = finish
-            })
-        }
+        cell.setImage(urlStr: stockData.imgUrlStr, completion: { (finish, error) in
+            if error != nil {
+                print("Error loading image: \(error.debugDescription)")
+            }
+        })
         return cell
     }
     

@@ -31,6 +31,7 @@ class MainStockCell: UITableViewCell {
         if let imgURL = URL(string: urlStr ?? "") {
             let thumbnailSize = CGSize(width: 100, height: 100)
             stockImgView?.sd_setImage(with: imgURL, placeholderImage: nil, context: [SDWebImageContextOption.imageThumbnailPixelSize: thumbnailSize], progress: nil, completed: { (image, error, cacheType, url) in
+//                print("setImage completed - url: \(String(describing: url?.path)) cacheType: \(cacheType.rawValue)")
                 if error == nil && image != nil {
                     completion(true, nil)
                 }
