@@ -16,7 +16,7 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var stockName: String?
     var stockSymbol: String?
-    var stocksData: [StockData]?
+    var stockDataList: [StockData]?
     var stockDataInterval: StockDataInterval = .one
     var segmentedControlIndex:Int = 0
 
@@ -24,16 +24,16 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
 
         self.navigationItem.title = stockName
-        stocksData?.sort(by: {$0.date > $1.date})
+        stockDataList?.sort(by: {$0.date > $1.date})
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stocksData != nil ? stocksData!.count : 0
+        return stockDataList != nil ? stockDataList!.count : 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockDataCellID", for: indexPath) as! StockDataCell
-        if let stocksData = stocksData {
+        if let stocksData = stockDataList {
             let stockData = stocksData[indexPath.row]
             cell.timeLabel.text = stockData.timeStr
             cell.openLabel.text = "Open: \(stockData.open)"
@@ -54,15 +54,15 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
             if success && stocksData != nil {
                 self.stockDataInterval = _stockDataInterval
                 self.segmentedControlIndex = self.segmentedControl.selectedSegmentIndex
-                self.stocksData = stocksData
-                self.stocksData?.sort(by: {$0.date > $1.date})
+                self.stockDataList = stocksData
+                self.stockDataList?.sort(by: {$0.date > $1.date})
                 self.tableView.reloadData()
             }
             else {
                 self.segmentedControl.selectedSegmentIndex = self.segmentedControlIndex
+                self.showAlert(title: "Error loading:", message: "\(error?.localizedDescription ?? "There is a limit to 5 requests per minute only")")
             }
             MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
-    
 }

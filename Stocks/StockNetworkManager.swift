@@ -30,7 +30,7 @@ enum StockDataInterval: Int {
 
 class StockNetworkManager {
     
-    static let apiKey = "Z8EW6CI3PHR9SUTK"
+    static let apiKey = "C7L63GVH13UJTA2T"
     
     class func requestStockData(symbol: String, interval:StockDataInterval, completion: @escaping(Bool, Error?, [String:[String:Any]]?) -> ()) {
         if let url = requestURL(symbol: symbol, interval: interval) {

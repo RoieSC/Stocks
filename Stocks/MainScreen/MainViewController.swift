@@ -31,11 +31,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.nameLabel.text = stockData.name
         cell.stkLabel.text = stockData.stk
         cell.priorityLabel.text = "\(stockData.priority ?? 0)"
-        if !stockData.didLoadImage { //Loading image once
-            cell.setImage(urlStr: stockData.imgUrlStr, completion: { (finish, error) in
-                stockData.didLoadImage = finish
-            })
-        }
+        cell.setImage(urlStr: stockData.imgUrlStr, completion: { (finish, error) in
+            if error != nil {
+                print("Error loading image: \(error.debugDescription)")
+            }
+        })
         return cell
     }
     
@@ -47,12 +47,23 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 if let stockDataVC = UIStoryboard.init(name: "SingleStockDataVC", bundle: Bundle.main).instantiateViewController(identifier: "SingleStockDataVC") as? SingleStockDataVC {
                     stockDataVC.stockSymbol = stockData.stk
                     stockDataVC.stockName = stockData.name
-                    stockDataVC.stocksData = stocksData
+                    stockDataVC.stockDataList = stocksData
                     self.navigationController?.show(stockDataVC, sender: nil)
                 }
+            }
+            else {
+                self.showAlert(title: "Error loading:", message: "\(error?.localizedDescription ?? "There is a limit to 5 requests per minute only")")
             }
             MBProgressHUD.hide(for: self.view, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+extension UIViewController {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
