@@ -60,9 +60,9 @@ class SingleStockDataVC: UIViewController, UITableViewDataSource {
             }
             else {
                 self.segmentedControl.selectedSegmentIndex = self.segmentedControlIndex
+                self.showAlert(title: "Error loading:", message: "\(error?.localizedDescription ?? "There is a limit to 5 requests per minute only")")
             }
             MBProgressHUD.hide(for: self.view, animated: true)
         }
     }
-    
 }

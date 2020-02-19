@@ -51,8 +51,19 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.navigationController?.show(stockDataVC, sender: nil)
                 }
             }
+            else {
+                self.showAlert(title: "Error loading:", message: "\(error?.localizedDescription ?? "There is a limit to 5 requests per minute only")")
+            }
             MBProgressHUD.hide(for: self.view, animated: true)
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+extension UIViewController {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
